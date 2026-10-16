@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <button onclick="test()">Test AI</button>
+
+    <script>
+      async function test() {
+        const response = await fetch("http://localhost:5000/explain", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            age: 30,
+            sex: "male",
+            bmi: 25.5,
+            children: 1,
+            smoker: "no",
+            region: "southwest",
+            prediction: 3970.80
+          })
+        });
+
+        const data = await response.json();
+
+        console.log(data);
+        alert(data.explanation || data.error);
+      }
+    </script>
+  </body>
+</html>
