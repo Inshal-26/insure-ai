@@ -2,10 +2,13 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import joblib
 import pandas as pd
+from pathlib import Path
 
 app = FastAPI()
 
-model = joblib.load("insurance_model.pkl")
+MODEL_PATH = Path(__file__).resolve().parent / "insurance_model.pkl"
+
+model = joblib.load(MODEL_PATH)
 
 
 class InsuranceInput(BaseModel):
