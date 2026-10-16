@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 app.post("/predict", async (req, res) => {
   try {
     const response = await axios.post(
-      "http://127.0.0.1:8000/predict",
+      `${process.env.ML_SERVICE_URL}/predict`,
       req.body
     );
 
@@ -78,6 +78,8 @@ Explain in 2-3 short paragraphs why these characteristics may be associated with
     });
   }
 });
-app.listen(5000, () => {
-  console.log("Backend running on http://localhost:5000");
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Backend running on port ${PORT}`);
 });
